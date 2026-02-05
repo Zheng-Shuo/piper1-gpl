@@ -89,7 +89,17 @@ jobs:
         run: python -m build --sdist
 
       - name: Move wheels
-        run: mv wheelhouse/*.whl dist/
+        shell: python
+        run: |
+          from pathlib import Path
+          import shutil
+
+          wheelhouse = Path("wheelhouse")
+          dist = Path("dist")
+          dist.mkdir(exist_ok=True)
+
+          for whl in wheelhouse.glob("*.whl"):
+              shutil.move(str(whl), dist / whl.name)
 
       - name: Upload wheels and sdist
         uses: actions/upload-artifact@v4
