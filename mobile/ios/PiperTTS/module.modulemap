@@ -1,0 +1,4 @@
+module PiperTTS {
+    header "PiperTTS.h"
+    export *
+}
