@@ -1,5 +1,7 @@
 # 📱 Piper Mobile Platform Support
 
+> [中文版](README_CN.md)
+
 This directory contains build configurations and wrapper libraries for using Piper on mobile platforms (Android and iOS).
 
 ## Overview
