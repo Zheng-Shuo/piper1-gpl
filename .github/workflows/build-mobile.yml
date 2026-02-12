@@ -46,10 +46,13 @@ jobs:
         working-directory: mobile/android
         run: chmod +x gradlew || echo "gradlew not found, will be generated"
       
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+      
       - name: Setup Gradle wrapper
         working-directory: mobile/android
         run: |
-          if [ ! -f gradlew ]; then
+          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
             echo "Generating Gradle wrapper..."
             gradle wrapper --gradle-version 8.2
           fi
