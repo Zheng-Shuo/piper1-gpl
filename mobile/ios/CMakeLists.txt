@@ -51,19 +51,22 @@ ExternalProject_Add(espeak_ng_external
 # ---- ONNX Runtime ----
 
 set(ONNXRUNTIME_VERSION "1.22.0")
-set(ONNXRUNTIME_IOS_URL "https://github.com/microsoft/onnxruntime/releases/download/v${ONNXRUNTIME_VERSION}/onnxruntime-ios-${ONNXRUNTIME_VERSION}.zip")
+# iOS binaries are distributed via CocoaPods, not GitHub releases
+set(ONNXRUNTIME_IOS_URL "https://download.onnxruntime.ai/pod-archive-onnxruntime-c-${ONNXRUNTIME_VERSION}.zip")
 set(ONNXRUNTIME_ZIP_FILE "${CMAKE_BINARY_DIR}/onnxruntime-ios.zip")
 set(ONNXRUNTIME_EXTRACTED_DIR "${CMAKE_BINARY_DIR}/onnxruntime-ios")
 
 # Download ONNX Runtime for iOS if not already present
 if(NOT EXISTS "${ONNXRUNTIME_ZIP_FILE}")
-    message(STATUS "Downloading ONNX Runtime iOS...")
+    message(STATUS "Downloading ONNX Runtime iOS from ${ONNXRUNTIME_IOS_URL}...")
     file(DOWNLOAD "${ONNXRUNTIME_IOS_URL}" "${ONNXRUNTIME_ZIP_FILE}"
+         TIMEOUT 300
          SHOW_PROGRESS
          STATUS DOWNLOAD_STATUS)
     list(GET DOWNLOAD_STATUS 0 STATUS_CODE)
+    list(GET DOWNLOAD_STATUS 1 STATUS_MESSAGE)
     if(NOT STATUS_CODE EQUAL 0)
-        message(FATAL_ERROR "Failed to download ONNX Runtime iOS")
+        message(FATAL_ERROR "Failed to download ONNX Runtime iOS from ${ONNXRUNTIME_IOS_URL}: ${STATUS_MESSAGE}")
     endif()
 endif()
 
