@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-#include <uchar.h>
+#include "uchar_compat.h"
 
 #ifdef __cplusplus
 extern "C" {
