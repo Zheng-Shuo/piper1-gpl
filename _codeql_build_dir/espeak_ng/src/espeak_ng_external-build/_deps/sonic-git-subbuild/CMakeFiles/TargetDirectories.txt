@@ -1,0 +1,3 @@
+/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-build/_deps/sonic-git-subbuild/CMakeFiles/sonic-git-populate.dir
+/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-build/_deps/sonic-git-subbuild/CMakeFiles/edit_cache.dir
+/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-build/_deps/sonic-git-subbuild/CMakeFiles/rebuild_cache.dir

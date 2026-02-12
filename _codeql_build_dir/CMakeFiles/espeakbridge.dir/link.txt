@@ -1,0 +1,1 @@
+/home/runner/work/piper1-gpl/.codeql-scratch/dbs/cpp/working/autobuild/bin/cc -fPIC -O3 -DNDEBUG -Wl,--dependency-file=CMakeFiles/espeakbridge.dir/link.d -shared  -o espeakbridge.so CMakeFiles/espeakbridge.dir/src/piper/espeakbridge.c.o  espeak_ng-install/lib/libespeak-ng.a espeak_ng/src/espeak_ng_external-build/src/ucd-tools/libucd.a

@@ -1,0 +1,5 @@
+framework module PiperTTS {
+    umbrella header "PiperTTS.h"
+    export *
+    module * { export * }
+}

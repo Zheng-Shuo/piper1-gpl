@@ -4,7 +4,13 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-#include <uchar.h>
+
+// Use compatibility header for platforms without uchar.h
+#if defined(__ANDROID__) || defined(__APPLE__) || !__has_include(<uchar.h>)
+    #include "uchar_compat.h"
+#else
+    #include <uchar.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {

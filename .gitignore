@@ -20,3 +20,22 @@ src/piper/train/vits/monotonic_align/core.c
 *.so
 
 lightning_logs/
+
+# Mobile build artifacts
+mobile/android/.gradle/
+mobile/android/build/
+mobile/android/piper/build/
+mobile/android/.idea/
+mobile/android/local.properties
+mobile/android/*.iml
+mobile/ios/build/
+mobile/ios/install/
+*.xcframework
+*.aar
+*.apk
+*.aab
+*.zip
+
+# CodeQL build artifacts
+_codeql_build_dir/
+_codeql_detected_source_root

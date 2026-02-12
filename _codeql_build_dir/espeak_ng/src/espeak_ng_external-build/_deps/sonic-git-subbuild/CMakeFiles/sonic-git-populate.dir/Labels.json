@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-build/_deps/sonic-git-subbuild/CMakeFiles/sonic-git-populate"
+		},
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-build/_deps/sonic-git-subbuild/CMakeFiles/sonic-git-populate.rule"
+		},
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-build/_deps/sonic-git-subbuild/CMakeFiles/sonic-git-populate-complete.rule"
+		},
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-build/_deps/sonic-git-subbuild/sonic-git-populate-prefix/src/sonic-git-populate-stamp/sonic-git-populate-build.rule"
+		},
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-build/_deps/sonic-git-subbuild/sonic-git-populate-prefix/src/sonic-git-populate-stamp/sonic-git-populate-configure.rule"
+		},
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-build/_deps/sonic-git-subbuild/sonic-git-populate-prefix/src/sonic-git-populate-stamp/sonic-git-populate-download.rule"
+		},
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-build/_deps/sonic-git-subbuild/sonic-git-populate-prefix/src/sonic-git-populate-stamp/sonic-git-populate-install.rule"
+		},
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-build/_deps/sonic-git-subbuild/sonic-git-populate-prefix/src/sonic-git-populate-stamp/sonic-git-populate-mkdir.rule"
+		},
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-build/_deps/sonic-git-subbuild/sonic-git-populate-prefix/src/sonic-git-populate-stamp/sonic-git-populate-patch.rule"
+		},
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-build/_deps/sonic-git-subbuild/sonic-git-populate-prefix/src/sonic-git-populate-stamp/sonic-git-populate-test.rule"
+		},
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-build/_deps/sonic-git-subbuild/sonic-git-populate-prefix/src/sonic-git-populate-stamp/sonic-git-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"sonic-git-populate"
+		],
+		"name" : "sonic-git-populate"
+	}
+}
