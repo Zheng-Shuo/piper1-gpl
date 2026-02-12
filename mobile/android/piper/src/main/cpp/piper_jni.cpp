@@ -143,8 +143,8 @@ Java_com_piper_tts_PiperTTS_nativeGetSampleRate(JNIEnv *env, jobject /* this */,
     piper_audio_chunk chunk;
     result = piper_synthesize_next(synth, &chunk);
 
-    // Drain remaining chunks
-    while (result != PIPER_DONE && result == PIPER_OK) {
+    // Drain remaining chunks if any
+    while (result == PIPER_OK && !chunk.is_last) {
         result = piper_synthesize_next(synth, &chunk);
     }
 

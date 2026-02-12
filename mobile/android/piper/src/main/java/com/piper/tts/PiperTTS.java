@@ -92,20 +92,24 @@ public class PiperTTS {
      * 
      * Must be called when done using this PiperTTS instance.
      * After calling release(), this instance cannot be used anymore.
+     * 
+     * It is recommended to use this class in a try-finally block:
+     * <pre>
+     * PiperTTS tts = null;
+     * try {
+     *     tts = new PiperTTS(modelPath, configPath, espeakDataPath);
+     *     // Use tts...
+     * } finally {
+     *     if (tts != null) {
+     *         tts.release();
+     *     }
+     * }
+     * </pre>
      */
     public void release() {
         if (nativeHandle != 0) {
             nativeFree(nativeHandle);
             nativeHandle = 0;
-        }
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        try {
-            release();
-        } finally {
-            super.finalize();
         }
     }
 

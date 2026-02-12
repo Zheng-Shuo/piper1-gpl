@@ -55,12 +55,18 @@ public class PiperTTS {
             throw PiperError.initializationFailed("espeak-ng-data not found: \(espeakDataPath)")
         }
         
-        let configPathC = configPath?.cString(using: .utf8)
-        handle = piper_create(
-            modelPath.cString(using: .utf8),
-            configPathC,
-            espeakDataPath.cString(using: .utf8)
-        )
+        // Create C strings and keep them in scope during the call
+        modelPath.withCString { modelPathC in
+            espeakDataPath.withCString { espeakDataPathC in
+                if let configPath = configPath {
+                    configPath.withCString { configPathC in
+                        handle = piper_create(modelPathC, configPathC, espeakDataPathC)
+                    }
+                } else {
+                    handle = piper_create(modelPathC, nil, espeakDataPathC)
+                }
+            }
+        }
         
         guard handle != nil else {
             throw PiperError.initializationFailed(
@@ -89,8 +95,10 @@ public class PiperTTS {
         // Get default options
         var options = piper_default_synthesize_options(handle)
         
-        // Start synthesis
-        let startResult = piper_synthesize_start(handle, text.cString(using: .utf8), &options)
+        // Start synthesis with properly scoped C string
+        let startResult = text.withCString { textC in
+            piper_synthesize_start(handle, textC, &options)
+        }
         guard startResult == PIPER_OK else {
             throw PiperError.synthesisFailed("Failed to start synthesis")
         }
@@ -155,8 +163,10 @@ public class PiperTTS {
         // Get default options
         var options = piper_default_synthesize_options(handle)
         
-        // Start synthesis
-        let startResult = piper_synthesize_start(handle, text.cString(using: .utf8), &options)
+        // Start synthesis with properly scoped C string
+        let startResult = text.withCString { textC in
+            piper_synthesize_start(handle, textC, &options)
+        }
         guard startResult == PIPER_OK else {
             throw PiperError.synthesisFailed("Failed to start synthesis")
         }
@@ -197,17 +207,20 @@ public class PiperTTS {
         }
         
         var options = piper_default_synthesize_options(handle)
-        let result = piper_synthesize_start(handle, " ".cString(using: .utf8), &options)
-        guard result == PIPER_OK else {
-            return 22050 // Default fallback
+        " ".withCString { textC in
+            _ = piper_synthesize_start(handle, textC, &options)
         }
         
         var chunk = piper_audio_chunk()
-        _ = piper_synthesize_next(handle, &chunk)
+        var result = piper_synthesize_next(handle, &chunk)
         
-        // Drain remaining chunks
-        while piper_synthesize_next(handle, &chunk) != PIPER_DONE {
-            // Continue draining
+        // Drain remaining chunks if any, with error checking
+        while result == PIPER_OK && !chunk.is_last {
+            result = piper_synthesize_next(handle, &chunk)
+            if result != PIPER_OK && result != PIPER_DONE {
+                // Error occurred, but we can still try to get sample rate
+                break
+            }
         }
         
         return Int(chunk.sample_rate)
