@@ -1,0 +1,83 @@
+name: Build Mobile Libraries
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'libpiper/**'
+      - 'mobile/**'
+      - '.github/workflows/build-mobile.yml'
+  pull_request:
+    paths:
+      - 'libpiper/**'
+      - 'mobile/**'
+      - '.github/workflows/build-mobile.yml'
+  workflow_dispatch:
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+    
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+    
+    - name: Install Android NDK
+      run: |
+        echo "y" | sdkmanager --install "ndk;26.1.10909125"
+        echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/26.1.10909125" >> $GITHUB_ENV
+        echo "ANDROID_NDK=$ANDROID_HOME/ndk/26.1.10909125" >> $GITHUB_ENV
+    
+    - name: Setup Gradle
+      run: |
+        cd mobile/android
+        chmod +x gradlew
+    
+    - name: Build Android AAR
+      run: |
+        cd mobile/android
+        ./gradlew :piper:assembleRelease
+    
+    - name: Upload AAR artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: piper-android-aar
+        path: mobile/android/piper/build/outputs/aar/*.aar
+        retention-days: 30
+
+  build-ios:
+    runs-on: macos-14  # Apple Silicon runner
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Select Xcode version
+      run: sudo xcode-select -s /Applications/Xcode_15.2.app/Contents/Developer
+    
+    - name: Install CMake
+      run: |
+        brew install cmake
+        cmake --version
+    
+    - name: Build iOS XCFramework
+      run: |
+        cd mobile/ios
+        chmod +x build_xcframework.sh
+        ./build_xcframework.sh
+    
+    - name: Upload XCFramework artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: piper-ios-xcframework
+        path: mobile/ios/xcframework/*.zip
+        retention-days: 30
