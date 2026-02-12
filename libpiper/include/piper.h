@@ -210,6 +210,15 @@ int piper_synthesize_start(piper_synthesizer *synth, const char *text,
  */
 int piper_synthesize_next(piper_synthesizer *synth, piper_audio_chunk *chunk);
 
+/**
+ * \brief Get the sample rate of the loaded voice.
+ *
+ * \param synth Piper synthesizer.
+ *
+ * \return Sample rate in Hertz, or 0 if synth is NULL.
+ */
+int piper_get_sample_rate(piper_synthesizer *synth);
+
 #ifdef __cplusplus
 }
 #endif

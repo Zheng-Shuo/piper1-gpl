@@ -415,3 +415,10 @@ int piper_synthesize_next(struct piper_synthesizer *synth,
 
     return PIPER_OK;
 }
+
+int piper_get_sample_rate(piper_synthesizer *synth) {
+    if (!synth) {
+        return 0;
+    }
+    return synth->sample_rate;
+}

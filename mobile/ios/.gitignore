@@ -1,0 +1,13 @@
+# iOS build artifacts
+build/
+xcframework/
+lib/
+*.xcworkspace
+*.xcodeproj
+DerivedData/
+*.zip
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake

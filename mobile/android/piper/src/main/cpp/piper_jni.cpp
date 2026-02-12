@@ -121,10 +121,7 @@ Java_com_piper_tts_PiperTTS_nativeGetSampleRate(JNIEnv *env, jobject thiz, jlong
         return 0;
     }
 
-    // Get sample rate from a test synthesis (we need to extract it from the synthesizer)
-    // For now, return a default value - this will need to be extracted from the voice config
-    // In a real implementation, we'd need to expose sample_rate from piper_synthesizer
-    return 22050; // Default, should be extracted from synth->sample_rate
+    return piper_get_sample_rate(synth);
 }
 
 } // extern "C"

@@ -35,13 +35,12 @@ public class PiperTTS {
             }
         }
         
-        guard handle != nil else {
+        guard let handle = handle else {
             throw PiperError.initializationFailed
         }
         
-        // Get sample rate by doing a test synthesis
-        // Note: In the real implementation, we'd need to extract this from the config
-        sampleRate = 22050 // Default value
+        // Get sample rate using the new API function
+        sampleRate = Int(piper_get_sample_rate(handle))
     }
     
     /// Synthesize text to 16-bit PCM audio samples
