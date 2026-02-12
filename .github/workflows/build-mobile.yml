@@ -1,0 +1,92 @@
+name: Build Mobile Platforms
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'libpiper/**'
+      - 'mobile/**'
+      - '.github/workflows/build-mobile.yml'
+  pull_request:
+    paths:
+      - 'libpiper/**'
+      - 'mobile/**'
+      - '.github/workflows/build-mobile.yml'
+  workflow_dispatch:
+
+jobs:
+  build-android:
+    name: Build Android AAR
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+      
+      - name: Install Android NDK
+        run: |
+          echo "y" | sdkmanager --install "ndk;26.3.11579264"
+          echo "ANDROID_NDK_HOME=$ANDROID_SDK_ROOT/ndk/26.3.11579264" >> $GITHUB_ENV
+          echo "ANDROID_NDK=$ANDROID_SDK_ROOT/ndk/26.3.11579264" >> $GITHUB_ENV
+      
+      - name: Grant execute permission for gradlew
+        working-directory: mobile/android
+        run: chmod +x gradlew || echo "gradlew not found, will be generated"
+      
+      - name: Setup Gradle wrapper
+        working-directory: mobile/android
+        run: |
+          if [ ! -f gradlew ]; then
+            echo "Generating Gradle wrapper..."
+            gradle wrapper --gradle-version 8.2
+          fi
+      
+      - name: Build AAR with Gradle
+        working-directory: mobile/android
+        run: ./gradlew :piper:assembleRelease
+      
+      - name: Upload AAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: piper-android-aar
+          path: mobile/android/piper/build/outputs/aar/*.aar
+          retention-days: 30
+  
+  build-ios:
+    name: Build iOS XCFramework
+    runs-on: macos-14  # Apple Silicon
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_15.2.app/Contents/Developer
+      
+      - name: Install CMake
+        run: |
+          brew install cmake
+          cmake --version
+      
+      - name: Build XCFramework
+        working-directory: mobile/ios
+        run: |
+          chmod +x build_xcframework.sh
+          ./build_xcframework.sh
+      
+      - name: Upload XCFramework artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: piper-ios-xcframework
+          path: mobile/ios/build/PiperTTS-iOS.zip
+          retention-days: 30
