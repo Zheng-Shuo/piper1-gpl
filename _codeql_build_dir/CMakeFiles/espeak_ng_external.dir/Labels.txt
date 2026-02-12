@@ -1,0 +1,13 @@
+# Target labels
+ espeak_ng_external
+# Source files and their labels
+/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/CMakeFiles/espeak_ng_external
+/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/CMakeFiles/espeak_ng_external.rule
+/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/CMakeFiles/espeak_ng_external-complete.rule
+/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-stamp/espeak_ng_external-build.rule
+/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-stamp/espeak_ng_external-configure.rule
+/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-stamp/espeak_ng_external-download.rule
+/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-stamp/espeak_ng_external-install.rule
+/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-stamp/espeak_ng_external-mkdir.rule
+/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-stamp/espeak_ng_external-patch_disconnected.rule
+/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-stamp/espeak_ng_external-update_disconnected.rule

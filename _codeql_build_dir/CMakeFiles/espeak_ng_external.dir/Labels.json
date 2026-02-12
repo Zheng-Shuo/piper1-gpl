@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/CMakeFiles/espeak_ng_external"
+		},
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/CMakeFiles/espeak_ng_external.rule"
+		},
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/CMakeFiles/espeak_ng_external-complete.rule"
+		},
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-stamp/espeak_ng_external-build.rule"
+		},
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-stamp/espeak_ng_external-configure.rule"
+		},
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-stamp/espeak_ng_external-download.rule"
+		},
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-stamp/espeak_ng_external-install.rule"
+		},
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-stamp/espeak_ng_external-mkdir.rule"
+		},
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-stamp/espeak_ng_external-patch_disconnected.rule"
+		},
+		{
+			"file" : "/home/runner/work/piper1-gpl/piper1-gpl/_codeql_build_dir/espeak_ng/src/espeak_ng_external-stamp/espeak_ng_external-update_disconnected.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"espeak_ng_external"
+		],
+		"name" : "espeak_ng_external"
+	}
+}
